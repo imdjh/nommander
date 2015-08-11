@@ -1,0 +1,28 @@
+{
+  "name": "nommander",
+  "version": "0.0.1",
+  "description": "Web hook to accomplish simple task, like reboot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imdjh/nommander.git"
+  },
+  "keywords": [
+    "web",
+    "hook",
+    "task"
+  ],
+  "author": "djh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imdjh/nommander/issues"
+  },
+  "homepage": "https://github.com/imdjh/nommander",
+  "dependencies": {
+    "express": "^4.13.3",
+    "shelljs": "^0.5.1"
+  }
+}

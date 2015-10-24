@@ -5,7 +5,7 @@ var https = require('https');
 
 var PORT = 8079;  // Adjust of `8079' should also done with Dockerfile
 var POOL_TRUEDICE = [];
-var VERBOSE = process.env.VERBOSE || false;
+var VERBOSE = process.env.VERBOSE == 'yes';  // Only get verbose at ENV specified
 var SEQDELAY_DICEPOOL = process.env.PULL_DELAY || 5000;
 var CHECKID = process.env.CHECKID || console.error("No CHECKID ENV found, Server would be volurable!");
 var NAME = process.env.BOT_NAME || 'True Random Dice';
@@ -22,13 +22,15 @@ var app = express();
 app.use(bodyParser.urlencoded({     // to support pubu.im URL-encoded bodies
       extended: true
 }));
-app.listen(PORT, function () {console.log("Listen on " + PORT)});
+app.listen(PORT, function () {
+    if (VERBOSE) console.log("Server listen on " + PORT);
+});
 
 // Initlize dice pool
 (function refillDicePool () {
 	if (! checkDicePool(null)) {  // Fill up dice pool
 		console.error("Dice pool is empty.");
-		if (VERBOSE) console.log("Async fetching sweety randomness...");
+		if (!! VERBOSE || VERBOSE == 'yes') console.log("Async fetching sweety randomness...");
 		setTimeout(refillDicePool, SEQDELAY_DICEPOOL);
 	}
 })();  // Init at startup

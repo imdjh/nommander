@@ -100,10 +100,8 @@ function rollDice (res) {
 function wrappedJSON (msg, botName, botAvatar) {
     return {
 				"text": msg,
-				"displayUser": {
-					"name": botName,
-					"avatarUrl": botAvatar
-				}
+				"username": botName,
+                "icon_url": botAvatar
 			}
 }
 

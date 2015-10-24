@@ -3,15 +3,19 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var https = require('https');
 
-var URL_TRUEDICE = 'https://www.random.org/integers/?num=50&min=1&max=6&col=1&base=10&format=plain&rnd=new';
+var PORT = 8079;  // Adjust of `8079' should also done with Dockerfile
 var POOL_TRUEDICE = [];
-var SEQDELAY_DICEPOOL = 5000;
-var PORT = process.env.NODE_PORT || 8079;
-var CHECKID = process.env.CHECKID || console.error("No CHECKID ENV found, Server would be volurable!");
 var VERBOSE = process.env.VERBOSE || false;
+var SEQDELAY_DICEPOOL = process.env.PULL_DELAY || 5000;
+var CHECKID = process.env.CHECKID || console.error("No CHECKID ENV found, Server would be volurable!");
 var NAME = process.env.BOT_NAME || 'True Random Dice';
 var AVATOR = process.env.BOT_AVATOR || 'https://www.baidu.com/img/baidu_jgylogo3.gif';  // TODO: no baidu logo
 var MSGPREFIX = process.env.BOT_MSGPREFIX || 'I choose ';
+var TR_START = process.env.TR_START || 1;
+var TR_END = process.env.TR_END || 6;
+var TR_BUFFER = process.env.TR_BUFFER || 50;
+var URL_TRUEDICE = 'https://www.random.org/integers/?num=' + TR_BUFFER + '&min=' + TR_START +
+                   '&max=' + TR_END + '&col=1&base=10&format=plain&rnd=new';
 
 
 var app = express();
@@ -49,7 +53,7 @@ app.post('/pubuim', function (req, res) {
         switch(keyword.toLowerCase()) {
             case 'roll':
                 var t = rollDice(res);
-                var response = wrappedJSON(t, BOT_NAME, BOT_AVATOR);
+                var response = wrappedJSON(t, NAME, AVATOR);
                 res.json(response);
                 break;
             default:

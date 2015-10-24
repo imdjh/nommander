@@ -1,4 +1,3 @@
-require('shelljs/global');
 var express = require('express');
 var bodyParser = require('body-parser');
 var https = require('https');
@@ -35,15 +34,6 @@ app.listen(PORT, function () {
 	}
 })();  // Init at startup
 
-app.get('/', function (req, res) {
-	if (req.query.t === 'reboot') {
-		res.send('rebooting');
-		exec('/sbin/reboot');
-
-	} else {
-        die(res);
-	}
-});
 app.post('/pubuim', function (req, res) {
     var id = req.body.team_id,
         keyword = req.body.trigger_word;

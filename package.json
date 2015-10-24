@@ -1,29 +1,27 @@
 {
-  "name": "nommander",
-  "version": "0.0.2",
-  "description": "Web hook to accomplish simple task, like reboot",
+  "name": "TrueRandomBot-pubuim",
+  "version": "0.1.1",
+  "description": "A true random number bot for pubuim service.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/imdjh/nommander.git"
+    "url": "https://github.com/imdjh/trbot-pubuim.git"
   },
   "keywords": [
-    "web",
-    "hook",
-    "task"
+    "bot",
+    "pubuim"
   ],
   "author": "djh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/imdjh/nommander/issues"
+    "url": "https://github.com/imdjh/trbot-pubuim/issues"
   },
-  "homepage": "https://github.com/imdjh/nommander",
+  "homepage": "https://github.com/imdjh/trbot-pubuim",
   "dependencies": {
     "body-parser": "^1.14.1",
-    "express": "^4.13.3",
-    "shelljs": "^0.5.1"
+    "express": "^4.13.3"
   }
 }

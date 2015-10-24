@@ -17,11 +17,11 @@ app.listen(ListenPort, function () {console.log("Listen on " + ListenPort)});
 
 (function refillDicePool () {
 	if (! checkDicePool(null)) {  // Fill up dice pool
-		console.error("Dice pool empty.");
-		console.log("Async fetching sweety ...");
-		setTimeout(refillDicePool, 5000);
+		console.error("Dice pool is empty.");
+		console.log("Async fetching random sweety ...");
+		setTimeout(refillDicePool, SEQDELAY_DICEPOOL);
 	}
-})();  // run at startup
+})();  // Init at startup
 
 function sleep(time) {
     var stop = new Date().getTime();

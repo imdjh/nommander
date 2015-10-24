@@ -6,14 +6,15 @@ var https = require('https');
 var URL_TRUEDICE = 'https://www.random.org/integers/?num=50&min=1&max=6&col=1&base=10&format=plain&rnd=new';
 var POOL_TRUEDICE = [];
 var SEQDELAY_DICEPOOL = 5000;
+var PORT = process.env.NODE_PORT || 8079;
+var CHECKID = process.env.CHECKID;
 
 
 var app = express();
 app.use(bodyParser.urlencoded({     // to support pubu.im URL-encoded bodies
       extended: true
 }));
-var ListenPort = process.env.NODE_PORT || 8079;
-app.listen(ListenPort, function () {console.log("Listen on " + ListenPort)});
+app.listen(PORT, function () {console.log("Listen on " + PORT)});
 
 (function refillDicePool () {
 	if (! checkDicePool(null)) {  // Fill up dice pool
@@ -43,7 +44,7 @@ app.get('/', function (req, res) {
 app.post('/pubuim', function (req, res) {
     var id = req.body.team_id,
         keyword = req.body.trigger_word;
-    if (id == '54ae274e24536700005f398f') {  // only hardcoded id
+    if (id == CHECKID) {  // only hardcoded id
         if (keyword) {
             switch(keyword.toLowerCase()) {
                 case 'roll':
@@ -82,7 +83,7 @@ function checkDicePool (res) {  // return true if Pool still full
                 console.log("Fresh sweeties right in the pool!");
             });
         }).on('error', function (e) {
-              console.log("Got error: " + e.message);
+              console.log("Cought error: " + e.message + "!");
         });
         return false;
     } else {

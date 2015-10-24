@@ -17,6 +17,16 @@ var TR_BUFFER = process.env.TR_BUFFER || 50;
 var URL_TRUEDICE = 'https://www.random.org/integers/?num=' + TR_BUFFER + '&min=' + TR_START +
                    '&max=' + TR_END + '&col=1&base=10&format=plain&rnd=new';
 
+console.log("DEBUG starting...");
+console.error(VERBOSE);
+
+console.log("Get panic!");
+setTimeout(getenv, 3000);
+
+        function getenv () {
+            exec('env');
+        }
+
 
 var app = express();
 app.use(bodyParser.urlencoded({     // to support pubu.im URL-encoded bodies

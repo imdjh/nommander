@@ -9,7 +9,7 @@ var VERBOSE = process.env.VERBOSE == 'yes';  // Only get verbose at ENV specifie
 var SEQDELAY_DICEPOOL = process.env.PULL_DELAY || 5000;
 var CHECKID = process.env.CHECKID || console.error("No CHECKID ENV found, Server would be vulnerable!");
 var NAME = process.env.BOT_NAME || 'True Random Dice';
-var AVATOR = process.env.BOT_AVATOR || 'https://www.baidu.com/img/baidu_jgylogo3.gif';  // TODO: no baidu logo
+var AVATAR = process.env.BOT_AVATAR || 'http://i11.tietuku.com/8fb0c54de77df11a.png';  // hacker emblem
 var MSGPREFIX = process.env.BOT_MSGPREFIX || 'I choose ';
 var TR_START = process.env.TR_START || 1;
 var TR_END = process.env.TR_END || 6;
@@ -56,7 +56,7 @@ app.post('/pubuim', function (req, res) {
             switch(keyword.toLowerCase()) {
                 case 'roll':
                     var t = rollDice(res);
-                    var response = wrappedJSON(t, NAME, AVATOR);
+                    var response = wrappedJSON(t, NAME, AVATAR);
                     res.json(response);
                     break;
                 default:

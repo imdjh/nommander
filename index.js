@@ -13,6 +13,7 @@ var MSGPREFIX = process.env.BOT_MSGPREFIX || 'I choose ';
 var TR_START = process.env.TR_START || 1;
 var TR_END = process.env.TR_END || 6;
 var TR_BUFFER = process.env.TR_BUFFER || 50;
+var TR_BUFFER_CHECKLENGTH = process.env.TR_BUFFER_CHECKLENGTH || 5;
 var URL_TRUEDICE = 'https://www.random.org/integers/?num=' + TR_BUFFER + '&min=' + TR_START +
                    '&max=' + TR_END + '&col=1&base=10&format=plain&rnd=new';
 
@@ -63,7 +64,7 @@ function die(res, msg) {  // die with optional message
 
 function checkDicePool (res) {  // return true if Pool still full
     var that = this;
-    if (POOL_TRUEDICE.length < 5) {
+    if (POOL_TRUEDICE.length < TR_BUFFER_CHECKLENGTH) {
         https.get(URL_TRUEDICE, function getTRN_Dice (r) {
             if (r.statusCode == 503) {
                     die(that.res, "Randomness has been ran out!");  // that.res would be null

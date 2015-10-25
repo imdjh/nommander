@@ -7,7 +7,7 @@ var PORT = 8079;  // Adjust of `8079' should also done with Dockerfile
 var POOL_TRUEDICE = [];
 var VERBOSE = process.env.VERBOSE == 'yes';  // Only get verbose at ENV specified
 var SEQDELAY_DICEPOOL = process.env.PULL_DELAY || 5000;
-var CHECKID = process.env.CHECKID || console.error("No CHECKID ENV found, Server would be volurable!");
+var CHECKID = process.env.CHECKID || console.error("No CHECKID ENV found, Server would be vulnerable!");
 var NAME = process.env.BOT_NAME || 'True Random Dice';
 var AVATOR = process.env.BOT_AVATOR || 'https://www.baidu.com/img/baidu_jgylogo3.gif';  // TODO: no baidu logo
 var MSGPREFIX = process.env.BOT_MSGPREFIX || 'I choose ';

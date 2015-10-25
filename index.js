@@ -34,7 +34,7 @@ app.listen(PORT, function () {
 	}
 })();  // Init at startup
 
-app.post('/pubuim', function (req, res) {
+app.post('/', function (req, res) {
     var id = req.body.team_id,
         keyword = req.body.trigger_word;
     if (CHECKID && id !== CHECKID) {

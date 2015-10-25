@@ -49,25 +49,26 @@ app.post('/pubuim', function (req, res) {
         keyword = req.body.trigger_word;
     if (CHECKID && id !== CHECKID) {
         die(res);
-    }
-    if (! CHECKID) console.error("Unknown requests from ID: " + id);  // log error without CHECKID ENV on each request
-    if (keyword) {
-        switch(keyword.toLowerCase()) {
-            case 'roll':
-                var t = rollDice(res);
-                var response = wrappedJSON(t, NAME, AVATOR);
-                res.json(response);
-                break;
-            default:
-                die(res, keyword);
-        }
+    } else {
+        if (! CHECKID) console.error("Unchecked requests from ID: " + id);  // log error without CHECKID per request
+        if (keyword) {
+            switch(keyword.toLowerCase()) {
+                case 'roll':
+                    var t = rollDice(res);
+                    var response = wrappedJSON(t, NAME, AVATOR);
+                    res.json(response);
+                    break;
+                default:
+                    die(res, keyword);
+            }
+        } else die(res, "nothing-at-all");  // die alone with nothing
     }
 });
 
 function die(res, msg) {  // die with optional message
     if (! res) console.error("Could not initlized, server blocked from random.org.");
-    if (msg) res.send("What's " + msg + "? I don't get it.");
-    res.send('Bad token!');
+    else if (msg) res.send("What's " + msg + "? I don't get it :O");
+    else res.send('Bad token!');
 }
 
 function checkDicePool (res) {  // return true if Pool still full
